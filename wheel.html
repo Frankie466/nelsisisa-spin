@@ -310,6 +310,79 @@
             text-decoration: underline;
         }
         
+        /* Status Styles */
+        .status-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .status {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-failed {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* Tooltip for pending status */
+        .tooltip {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 6px 10px;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        
+        .status-pending:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
         @keyframes pulse {
             0% { transform: translate(-50%, -50%) scale(1); }
             50% { transform: translate(-50%, -50%) scale(1.05); }
@@ -450,9 +523,52 @@
             }
         }
         
-        // Load and display withdrawal history
+        // Load and display withdrawal history with status
         function loadWithdrawalHistory() {
             const withdrawalHistory = JSON.parse(localStorage.getItem('withdrawalHistory')) || [];
+            
+            // If no history in localStorage, create sample data for demonstration
+            if (withdrawalHistory.length === 0) {
+                // Create sample history data
+                const sampleHistory = [
+                    {
+                        phone: "0712345678",
+                        amount: 500,
+                        date: "2024-01-15 14:30",
+                        status: "pending"
+                    },
+                    {
+                        phone: "0723456789",
+                        amount: 1000,
+                        date: "2024-01-14 11:20",
+                        status: "pending"
+                    },
+                    {
+                        phone: "0734567890",
+                        amount: 250,
+                        date: "2024-01-13 09:45",
+                        status: "pending"
+                    },
+                    {
+                        phone: "0745678901",
+                        amount: 1500,
+                        date: "2024-01-10 16:15",
+                        status: "completed"
+                    },
+                    {
+                        phone: "0756789012",
+                        amount: 750,
+                        date: "2024-01-08 13:10",
+                        status: "failed"
+                    }
+                ];
+                
+                // Save sample data to localStorage
+                localStorage.setItem('withdrawalHistory', JSON.stringify(sampleHistory));
+                
+                // Use the sample data
+                withdrawalHistory.push(...sampleHistory);
+            }
             
             // Clear current history
             historyList.innerHTML = '';
@@ -466,12 +582,31 @@
                 recentWithdrawals.forEach(item => {
                     const historyItem = document.createElement('div');
                     historyItem.className = 'history-item';
+                    
+                    // Determine status class and text
+                    let statusClass = 'status-pending';
+                    let statusText = 'PENDING';
+                    
+                    if (item.status === 'completed') {
+                        statusClass = 'status-completed';
+                        statusText = 'COMPLETED';
+                    } else if (item.status === 'failed') {
+                        statusClass = 'status-failed';
+                        statusText = 'FAILED';
+                    }
+                    
                     historyItem.innerHTML = `
                         <div>
                             <span class="phone-number">${item.phone}</span> - 
                             <span class="amount">Ksh.${item.amount}</span>
                         </div>
-                        <div class="date">${item.date}</div>
+                        <div class="status-container">
+                            <div class="date">${item.date}</div>
+                            <div class="status ${statusClass}">
+                                ${statusText}
+                                ${item.status === 'pending' ? '<span class="tooltip">Complete registration to complete withdrawal</span>' : ''}
+                            </div>
+                        </div>
                     `;
                     historyList.appendChild(historyItem);
                 });
@@ -520,6 +655,22 @@
         // Initialize the wheel segments and load history
         createWheelSegments();
         loadWithdrawalHistory();
+        
+        // Add hover effect for pending status tooltips
+        setTimeout(() => {
+            const pendingStatuses = document.querySelectorAll('.status-pending');
+            pendingStatuses.forEach(status => {
+                status.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.boxShadow = '0 2px 8px rgba(133, 100, 4, 0.3)';
+                });
+                
+                status.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        }, 100);
     </script>
 </body>
 </html>
