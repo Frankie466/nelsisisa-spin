@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skiza Promo - Withdrawal History</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .history {
+            margin-top: 20px;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        
+        .history-item {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container fade-in">
+        <h1>Withdrawal History</h1>
+        <div id="historyList" class="history">
+            <!-- History items will be added here -->
+        </div>
+        <a href="wheel.html" class="btn">Back to Game</a>
+    </div>
+
+    <script>
+        const historyList = document.getElementById('historyList');
+        
+        // Load withdrawal history
+        const withdrawalHistory = JSON.parse(localStorage.getItem('withdrawalHistory')) || [];
+        
+        // Populate history list
+        if (withdrawalHistory.length === 0) {
+            historyList.innerHTML = '<p>No withdrawals yet.</p>';
+        } else {
+            withdrawalHistory.forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.innerHTML = `
+                    <strong>${item.phone}</strong> - Ksh.${item.amount}<br>
+                    <small>${item.date}</small>
+                `;
+                historyList.appendChild(historyItem);
+            });
+        }
+    </script>
+</body>
+</html>

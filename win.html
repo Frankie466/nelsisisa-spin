@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skiza Promo - You Won!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f1a4d, #2d1b69, #6a11cb);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: linear-gradient(145deg, #ffffff, #f5f7ff);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+        }
+        
+        h1 {
+            color: #1a237e;
+            margin-bottom: 10px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        p {
+            color: #424242;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+        
+        .amount {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1a237e;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border-radius: 10px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .input-group {
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #424242;
+            font-weight: 600;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background-color: #f9f9ff;
+        }
+        
+        input:focus {
+            border-color: #6a11cb;
+            outline: none;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            margin-top: 15px;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(to right, #ff4b2b, #ff416c);
+        }
+        
+        /* Loading Overlay Styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 26, 77, 0.95), rgba(45, 27, 105, 0.95), rgba(106, 17, 203, 0.95));
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loading-content {
+            background: linear-gradient(145deg, #ffffff, #f5f7ff);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            max-width: 350px;
+            width: 90%;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+        }
+        
+        .loading-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: spin 1.5s linear infinite;
+        }
+        
+        .loading-title {
+            color: #1a237e;
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .loading-subtitle {
+            color: #6a11cb;
+            font-size: 16px;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 12px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .step {
+            text-align: center;
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .step.active {
+            color: #6a11cb;
+            font-weight: bold;
+        }
+        
+        .step.completed {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .verification-details {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+            border-left: 4px solid #6a11cb;
+        }
+        
+        .verification-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        
+        .verification-status {
+            font-weight: bold;
+        }
+        
+        .status-pending {
+            color: #FF9800;
+        }
+        
+        .status-processing {
+            color: #2196F3;
+        }
+        
+        .status-completed {
+            color: #4CAF50;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes confetti {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff0;
+            opacity: 0;
+            z-index: 1001;
+        }
+        
+        .logo {
+            font-size: 40px;
+            margin-bottom: 5px;
+            color: #6a11cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container fade-in">
+        <div class="logo">🎉</div>
+        <h1>Congratulations!</h1>
+        <p>You've won an amazing prize!</p>
+        <div id="winAmount" class="amount">Ksh.0</div>
+        <p>Enter your phone number to withdraw your prize</p>
+        
+        <div class="input-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" placeholder="07XXXXXXXX" maxlength="10">
+        </div>
+        
+        <button id="withdrawBtn" class="btn">Withdraw Prize</button>
+        <a href="wheel.html" class="btn btn-secondary">Spin Again</a>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-icon">⏳</div>
+            <div class="loading-title">Processing Withdrawal</div>
+            <div class="loading-subtitle">Please wait while we process your request</div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            
+            <!-- Progress Steps -->
+            <div class="progress-steps">
+                <div id="step1" class="step active">Verifying</div>
+                <div id="step2" class="step">Processing</div>
+                <div id="step3" class="step">Completing</div>
+            </div>
+            
+            <!-- Verification Details -->
+            <div class="verification-details">
+                <div class="verification-item">
+                    <span>Phone Number Verification</span>
+                    <span id="phoneStatus" class="verification-status status-pending">Pending</span>
+                </div>
+                <div class="verification-item">
+                    <span>Prize Validation</span>
+                    <span id="prizeStatus" class="verification-status status-pending">Pending</span>
+                </div>
+                <div class="verification-item">
+                    <span>Account Check</span>
+                    <span id="accountStatus" class="verification-status status-pending">Pending</span>
+                </div>
+                <div class="verification-item">
+                    <span>Transaction Initiation</span>
+                    <span id="transactionStatus" class="verification-status status-pending">Pending</span>
+                </div>
+            </div>
+            
+            <div id="finalMessage" style="display: none;">
+                <div class="loading-title" style="color: #4CAF50;">✅ Withdrawal Initiated Successfully!</div>
+                <p>Redirecting you to complete the process...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const winAmount = document.getElementById('winAmount');
+        const phoneInput = document.getElementById('phone');
+        const withdrawBtn = document.getElementById('withdrawBtn');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const progressBar = document.getElementById('progressBar');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const step3 = document.getElementById('step3');
+        const phoneStatus = document.getElementById('phoneStatus');
+        const prizeStatus = document.getElementById('prizeStatus');
+        const accountStatus = document.getElementById('accountStatus');
+        const transactionStatus = document.getElementById('transactionStatus');
+        const finalMessage = document.getElementById('finalMessage');
+
+        // Get the prize from localStorage
+        const currentPrize = localStorage.getItem('currentPrize') || 0;
+        winAmount.textContent = `Ksh.${currentPrize}`;
+
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `confetti ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.animationDelay = Math.random() * 1 + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Simulate verification process
+        function simulateVerification() {
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = progress + '%';
+                
+                // Update steps based on progress
+                if (progress >= 33) {
+                    step1.classList.remove('active');
+                    step1.classList.add('completed');
+                    step2.classList.add('active');
+                    phoneStatus.textContent = 'Completed';
+                    phoneStatus.className = 'verification-status status-completed';
+                }
+                
+                if (progress >= 66) {
+                    step2.classList.remove('active');
+                    step2.classList.add('completed');
+                    step3.classList.add('active');
+                    prizeStatus.textContent = 'Completed';
+                    prizeStatus.className = 'verification-status status-completed';
+                    accountStatus.textContent = 'Completed';
+                    accountStatus.className = 'verification-status status-completed';
+                }
+                
+                if (progress >= 85) {
+                    transactionStatus.textContent = 'Processing';
+                    transactionStatus.className = 'verification-status status-processing';
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    transactionStatus.textContent = 'Completed';
+                    transactionStatus.className = 'verification-status status-completed';
+                    
+                    // Show final message
+                    setTimeout(() => {
+                        finalMessage.style.display = 'block';
+                        createConfetti();
+                        
+                        // Redirect after showing success
+                        setTimeout(() => {
+                            // Add to withdrawal history
+                            const phone = phoneInput.value.trim();
+                            let withdrawalHistory = JSON.parse(localStorage.getItem('withdrawalHistory')) || [];
+                            
+                            const withdrawal = {
+                                phone: phone,
+                                amount: currentPrize,
+                                date: new Date().toLocaleString()
+                            };
+                            
+                            withdrawalHistory.push(withdrawal);
+                            localStorage.setItem('withdrawalHistory', JSON.stringify(withdrawalHistory));
+                            
+                            // Redirect to withdraw page
+                            window.location.href = 'withdraw.html';
+                        }, 2000);
+                    }, 1000);
+                }
+            }, 40); // Adjust speed of progress
+        }
+
+        // Withdraw button
+        withdrawBtn.addEventListener('click', () => {
+            const phone = phoneInput.value.trim();
+            
+            // Validate phone number (Kenyan format)
+            if (!/^(07|01)\d{8}$/.test(phone)) {
+                alert('Please enter a valid Kenyan phone number (10 digits starting with 07 or 01)');
+                return;
+            }
+            
+            // Show loading overlay
+            loadingOverlay.style.display = 'flex';
+            
+            // Start verification process after a short delay
+            setTimeout(() => {
+                simulateVerification();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

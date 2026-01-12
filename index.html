@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skiza Promo - Loading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f1a4d, #2d1b69, #6a11cb);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: linear-gradient(145deg, #ffffff, #f5f7ff);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+        }
+        
+        h1 {
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .loading {
+            font-size: 20px;
+            color: #6a11cb;
+            font-weight: 600;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(106, 17, 203, 0.3);
+            border-radius: 50%;
+            border-top-color: #6a11cb;
+            animation: spin 1s linear infinite;
+        }
+        
+        p {
+            color: #424242;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .brand-highlight {
+            color: #6a11cb;
+            font-weight: 600;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #6a11cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container fade-in">
+        <div class="logo">🎯</div>
+        <h1>SKIZA PROMO</h1>
+        <div class="loading">
+            <div class="spinner"></div>
+            Loading...
+        </div>
+        <p>Get ready to spin and win amazing <span class="brand-highlight">rewards</span>!</p>
+    </div>
+
+    <script>
+        // Redirect to wheel page after 2 seconds
+        setTimeout(() => {
+            window.location.href = 'wheel.html';
+        }, 2000);
+    </script>
+</body>
+</html>
