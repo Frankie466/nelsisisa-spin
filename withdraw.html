@@ -17,21 +17,22 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
+            align-items: flex-start;
+            padding: 15px;
         }
         
         .card-container {
             background: linear-gradient(145deg, #ffffff, #f5f7ff);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
             width: 100%;
             max-width: 400px;
-            padding: 30px;
+            padding: 20px 18px;
             text-align: center;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: 10px;
         }
         
         .card-container::before {
@@ -40,53 +41,66 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
+            height: 4px;
             background: linear-gradient(to right, #6a11cb, #2575fc);
         }
         
         .trophy {
-            font-size: 50px;
-            margin-bottom: 10px;
+            font-size: 40px;
+            margin-bottom: 5px;
             color: #ffd700;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
         
+        .success-tick {
+            color: #4CAF50;
+            font-size: 45px;
+            margin-bottom: 10px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
         h1 {
             color: #1a237e;
-            margin-bottom: 15px;
-            font-size: 28px;
+            margin-bottom: 8px;
+            font-size: 24px;
             font-weight: 700;
             line-height: 1.2;
         }
         
+        .you-won-text {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        
         .prize-amount {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: bold;
             color: #1a237e;
-            margin: 20px 0;
-            padding: 20px;
+            margin: 12px 0;
+            padding: 15px;
             background: linear-gradient(135deg, #6a11cb, #2575fc);
-            border-radius: 15px;
+            border-radius: 12px;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
         }
         
         .withdrawal-info {
             background: #f0f4ff;
-            padding: 15px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #6a11cb;
-            text-align: left;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 12px 0;
+            border-left: 3px solid #6a11cb;
+            text-align: center;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
         }
         
         .info-text {
             color: #333;
-            margin-bottom: 8px;
-            line-height: 1.5;
-            font-size: 15px;
+            line-height: 1.4;
+            font-size: 14px;
         }
         
         .highlight {
@@ -97,11 +111,11 @@
         .subscription-notice {
             background: #fff3cd;
             border: 2px solid #ffc107;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 20px 0;
-            text-align: left;
-            font-size: 14px;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 12px 0;
+            text-align: center;
+            font-size: 13px;
         }
         
         .notice-title {
@@ -110,57 +124,57 @@
             margin-bottom: 8px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            font-size: 16px;
+            font-size: 14px;
         }
         
         .ussd-section {
-            margin: 25px 0;
+            margin: 12px 0;
             background: #0e9b23;
-            padding: 20px;
-            border-radius: 15px;
+            padding: 15px;
+            border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .ussd-title {
-            color: #1a237e;
-            font-size: 18px;
+            color: white;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         
         .ussd-code-container {
             position: relative;
-            margin: 15px 0;
+            margin: 10px 0;
         }
         
         .ussd-code {
             background: linear-gradient(135deg, #1a2a6c, #b21f1f);
             color: white;
-            padding: 20px;
-            border-radius: 12px;
+            padding: 16px;
+            border-radius: 10px;
             font-family: 'Courier New', monospace;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             letter-spacing: 1px;
-            margin: 10px 0;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             word-break: break-all;
-            border: 3px solid #ffd700;
+            border: 2px solid #ffd700;
         }
         
         .copy-btn {
             position: absolute;
             top: 50%;
-            right: 15px;
+            right: 10px;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
-            padding: 8px 15px;
-            border-radius: 8px;
+            padding: 6px 12px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
         }
@@ -175,17 +189,11 @@
             border-color: #45a049;
         }
         
-        .dial-instruction {
-            color: #666;
-            font-size: 14px;
-            margin-top: 10px;
-            font-style: italic;
-        }
-        
         .action-buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 12px;
+            margin-top: 20px;
+            margin-bottom: 5px;
         }
         
         .btn {
@@ -193,27 +201,27 @@
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
             border: none;
-            padding: 16px 20px;
-            border-radius: 12px;
-            font-size: 16px;
+            padding: 14px 10px;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            min-height: 50px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            gap: 8px;
+            min-height: 45px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
         }
         
         .btn:active {
-            transform: translateY(-1px);
+            transform: translateY(0);
         }
         
         .btn-dial {
@@ -233,27 +241,23 @@
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.02); }
             100% { transform: scale(1); }
         }
         
         @keyframes shine {
-            0% { background-position: -100px; }
-            100% { background-position: 200px; }
+            0% { background-position: -80px; }
+            100% { background-position: 150px; }
         }
         
         .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
+            animation: fadeIn 0.5s ease-out;
         }
         
         .shine-effect {
@@ -263,51 +267,171 @@
                 rgba(255, 255, 255, 0.4),
                 transparent
             );
-            background-size: 200px 100%;
-            animation: shine 3s infinite;
+            background-size: 150px 100%;
+            animation: shine 2.5s infinite;
         }
         
-        /* Responsive adjustments */
+        /* Mobile-specific optimizations */
         @media (max-width: 480px) {
             body {
-                padding: 15px;
+                padding: 10px;
+                align-items: flex-start;
             }
             
             .card-container {
-                padding: 20px;
+                padding: 18px 15px;
+                margin-top: 5px;
             }
             
             h1 {
-                font-size: 24px;
+                font-size: 22px;
+                margin-bottom: 6px;
+            }
+            
+            .you-won-text {
+                font-size: 14px;
             }
             
             .prize-amount {
-                font-size: 28px;
-                padding: 15px;
+                font-size: 24px;
+                padding: 12px;
+                margin: 10px 0;
+            }
+            
+            .withdrawal-info {
+                padding: 10px;
+                margin: 10px 0;
+                font-size: 13px;
+            }
+            
+            .subscription-notice {
+                padding: 10px;
+                margin: 10px 0;
+                font-size: 12px;
+            }
+            
+            .ussd-section {
+                padding: 12px;
+                margin: 10px 0;
             }
             
             .ussd-code {
                 font-size: 18px;
-                padding: 15px;
+                padding: 14px;
             }
             
-            .btn {
-                padding: 14px 15px;
-                font-size: 15px;
+            .copy-btn {
+                padding: 5px 10px;
+                font-size: 10px;
+                right: 8px;
             }
             
             .action-buttons {
-                flex-direction: column;
                 gap: 10px;
+                margin-top: 15px;
+            }
+            
+            .btn {
+                padding: 12px 8px;
+                font-size: 13px;
+                min-height: 42px;
+            }
+            
+            .trophy {
+                font-size: 35px;
+            }
+            
+            .success-tick {
+                font-size: 40px;
             }
         }
         
-        /* Success tick animation */
-        .success-tick {
-            color: #4CAF50;
-            font-size: 60px;
-            margin-bottom: 15px;
-            animation: fadeIn 0.8s ease-out;
+        /* Very small screens */
+        @media (max-height: 700px) and (max-width: 480px) {
+            .card-container {
+                padding: 15px 12px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            .prize-amount {
+                font-size: 22px;
+                padding: 10px;
+                margin: 8px 0;
+            }
+            
+            .info-text {
+                font-size: 13px;
+            }
+            
+            .ussd-code {
+                font-size: 16px;
+                padding: 12px;
+            }
+            
+            .btn {
+                padding: 10px 8px;
+                font-size: 12px;
+                min-height: 40px;
+            }
+            
+            .trophy {
+                font-size: 30px;
+            }
+            
+            .success-tick {
+                font-size: 35px;
+            }
+            
+            .subscription-notice,
+            .withdrawal-info,
+            .ussd-section {
+                padding: 8px;
+                margin: 8px 0;
+            }
+        }
+        
+        /* Ensure everything fits on one screen */
+        @media (max-height: 600px) {
+            .card-container {
+                padding: 12px 10px;
+            }
+            
+            h1 {
+                font-size: 18px;
+                margin-bottom: 4px;
+            }
+            
+            .prize-amount {
+                font-size: 20px;
+                padding: 8px;
+                margin: 6px 0;
+            }
+            
+            .trophy {
+                font-size: 28px;
+                margin-bottom: 3px;
+            }
+            
+            .success-tick {
+                font-size: 32px;
+                margin-bottom: 5px;
+            }
+            
+            .subscription-notice,
+            .withdrawal-info,
+            .ussd-section {
+                padding: 6px;
+                margin: 6px 0;
+            }
+            
+            .btn {
+                padding: 8px 6px;
+                font-size: 11px;
+                min-height: 38px;
+            }
         }
     </style>
 </head>
@@ -316,9 +440,9 @@
         <div class="trophy">🏆</div>
         <div class="success-tick">✅</div>
         <h1>Congratulations!</h1>
-        <div class="info-text">You've won</div>
+        <div class="you-won-text">You've won</div>
         
-        <div class="prize-amount pulse-animation" id="prizeAmount">Ksh. 0</div>
+        <div class="prize-amount" id="prizeAmount">Ksh. 0</div>
         
         <div class="withdrawal-info">
             <p class="info-text">Your withdrawal request for <span class="highlight" id="withdrawalAmount">Ksh. 0</span> has been received.</p>
@@ -339,8 +463,6 @@
                     📋 Copy
                 </button>
             </div>
-            
-
         </div>
         
         <div class="action-buttons">
@@ -457,7 +579,7 @@
             
             button.addEventListener('mouseup', () => {
                 if (!button.disabled) {
-                    button.style.transform = 'translateY(-3px)';
+                    button.style.transform = 'translateY(-2px)';
                 }
             });
             
@@ -466,8 +588,21 @@
             });
         });
         
-        // Auto-scroll to ensure content is visible on small screens
+        // Auto-scroll to top
         window.scrollTo(0, 0);
+        
+        // Check if content fits and adjust if needed
+        setTimeout(() => {
+            const card = document.querySelector('.card-container');
+            const cardHeight = card.scrollHeight;
+            const viewportHeight = window.innerHeight;
+            
+            if (cardHeight > viewportHeight) {
+                // Reduce padding more if content doesn't fit
+                card.style.padding = '12px 10px';
+                card.style.fontSize = '0.9em';
+            }
+        }, 100);
         
         // Prevent context menu on long press
         document.addEventListener('contextmenu', (e) => {
