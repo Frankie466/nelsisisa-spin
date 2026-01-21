@@ -184,7 +184,7 @@
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            max-width: 350px;
+            max-width: 400px;
             width: 90%;
             color: #333;
             position: relative;
@@ -219,6 +219,85 @@
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .withdrawal-form {
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1a237e;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background-color: #f9f9ff;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+        }
+        
+        .phone-input {
+            display: flex;
+            align-items: center;
+        }
+        
+        .phone-prefix {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 10px 0 0 10px;
+            font-weight: bold;
+            border: 2px solid #6a11cb;
+            border-right: none;
+        }
+        
+        .phone-input input {
+            border-radius: 0 10px 10px 0;
+            border-left: none;
+        }
+        
+        .request-withdrawal-btn {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .request-withdrawal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+        
+        .request-withdrawal-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
         
         .continue-btn {
@@ -383,6 +462,93 @@
             opacity: 1;
         }
         
+        /* Success Message */
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #c3e6cb;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+        }
+        
+        /* Custom Alert Styles */
+        .custom-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .alert-content {
+            background: linear-gradient(145deg, #ffffff, #f5f7ff);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            animation: alertFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes alertFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .alert-icon {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .alert-title {
+            color: #1a237e;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .alert-message {
+            color: #424242;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+        
+        .alert-ok-btn {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .alert-ok-btn:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
         @keyframes pulse {
             0% { transform: translate(-50%, -50%) scale(1); }
             50% { transform: translate(-50%, -50%) scale(1.05); }
@@ -448,14 +614,42 @@
         <a href="history.html" class="admin-link">View Full History</a>
     </div>
 
-    <!-- Congratulations Popup -->
+    <!-- Congratulations Popup with Withdrawal Form -->
     <div id="congratulationsPopup" class="congratulations-popup">
         <div class="congratulations-content">
             <h2>🎉 Congratulations! 🎉</h2>
             <p>You've won an amazing prize!</p>
             <div id="winAmountDisplay" class="congratulations-amount">Ksh.0</div>
-            <p>Get ready to claim your reward!</p>
-            <button id="continueBtn" class="continue-btn">Continue to Claim Prize</button>
+            <p>Enter your phone number to withdraw <strong id="withdrawAmount">Ksh.0</strong></p>
+            
+            <!-- Withdrawal Form -->
+            <div class="withdrawal-form" id="withdrawalForm">
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <div class="phone-input">
+                        <div class="phone-prefix">+254</div>
+                        <input type="tel" id="phoneNumber" placeholder="712345678" maxlength="9" pattern="[0-9]{9}" required>
+                    </div>
+                    <small style="color: #666; display: block; margin-top: 5px;">Enter your Safaricom number (without country code)</small>
+                </div>
+                
+                <button id="requestWithdrawalBtn" class="request-withdrawal-btn">Request Withdrawal</button>
+            </div>
+            
+            <button id="continueBtn" class="continue-btn" style="display: none;">Back to Wheel</button>
+        </div>
+    </div>
+
+    <!-- Custom Alert for Withdrawal Confirmation -->
+    <div id="customAlert" class="custom-alert">
+        <div class="alert-content">
+            <div class="alert-icon">✅</div>
+            <div class="alert-title">Withdrawal Initiated!</div>
+            <div class="alert-message">
+                Your withdrawal request for <strong id="alertAmount">Ksh.0</strong> to <strong id="alertPhone">0712345678</strong> 
+                has been received and will be processed shortly.
+            </div>
+            <button id="alertOkBtn" class="alert-ok-btn">OK</button>
         </div>
     </div>
 
@@ -466,11 +660,20 @@
         const historyList = document.getElementById('historyList');
         const congratulationsPopup = document.getElementById('congratulationsPopup');
         const winAmountDisplay = document.getElementById('winAmountDisplay');
+        const withdrawAmount = document.getElementById('withdrawAmount');
+        const phoneNumberInput = document.getElementById('phoneNumber');
+        const requestWithdrawalBtn = document.getElementById('requestWithdrawalBtn');
         const continueBtn = document.getElementById('continueBtn');
+        const withdrawalForm = document.getElementById('withdrawalForm');
+        const customAlert = document.getElementById('customAlert');
+        const alertAmount = document.getElementById('alertAmount');
+        const alertPhone = document.getElementById('alertPhone');
+        const alertOkBtn = document.getElementById('alertOkBtn');
         
         // All prize amounts from Ksh.150 to Ksh.5,000
         const prizes = [150, 200, 300, 400, 500, 750, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000];
         let isSpinning = false;
+        let currentPrize = 0;
         
         // Create wheel segments with prizes
         function createWheelSegments() {
@@ -613,6 +816,54 @@
             }
         }
         
+        // Validate phone number
+        function validatePhoneNumber(phone) {
+            // Remove any spaces
+            phone = phone.replace(/\s/g, '');
+            
+            // Check if it's 9 digits and starts with 7
+            if (!/^[0-9]{9}$/.test(phone)) {
+                return false;
+            }
+            
+            // Check if it starts with 7 (Safaricom numbers)
+            if (!phone.startsWith('7')) {
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Format phone number
+        function formatPhoneNumber(phone) {
+            phone = phone.replace(/\s/g, '');
+            return `0${phone}`;
+        }
+        
+        // Get current date and time
+        function getCurrentDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            
+            return `${year}-${month}-${day} ${hours}:${minutes}`;
+        }
+        
+        // Show custom alert
+        function showWithdrawalAlert(amount, phone) {
+            alertAmount.textContent = `Ksh.${amount.toLocaleString()}`;
+            alertPhone.textContent = phone;
+            customAlert.style.display = 'flex';
+        }
+        
+        // Redirect to withdraw.html
+        function redirectToWithdraw() {
+            window.location.href = 'withdraw.html';
+        }
+        
         // Spin the wheel
         spinBtn.addEventListener('click', () => {
             if (isSpinning) return;
@@ -633,23 +884,104 @@
             
             // Wait for animation to complete
             setTimeout(() => {
-                const wonPrize = prizes[randomPrizeIndex];
+                currentPrize = prizes[randomPrizeIndex];
                 
                 // Store the prize in localStorage
-                localStorage.setItem('currentPrize', wonPrize);
+                localStorage.setItem('currentPrize', currentPrize);
                 
-                // Show congratulations popup with background
-                winAmountDisplay.textContent = `Ksh.${wonPrize.toLocaleString()}`;
+                // Show congratulations popup with withdrawal form
+                winAmountDisplay.textContent = `Ksh.${currentPrize.toLocaleString()}`;
+                withdrawAmount.textContent = `Ksh.${currentPrize.toLocaleString()}`;
                 congratulationsPopup.style.display = 'flex';
+                
+                // Reset form
+                phoneNumberInput.value = '';
+                withdrawalForm.style.display = 'block';
+                continueBtn.style.display = 'none';
+                phoneNumberInput.focus();
                 
                 // Create confetti effect
                 createConfetti();
             }, 4000);
         });
         
-        // Continue button to go to win page
+        // Request withdrawal button
+        requestWithdrawalBtn.addEventListener('click', () => {
+            const phone = phoneNumberInput.value.trim();
+            
+            if (!validatePhoneNumber(phone)) {
+                alert('Please enter a valid Safaricom phone number (9 digits starting with 7)');
+                phoneNumberInput.focus();
+                return;
+            }
+            
+            // Format phone number
+            const formattedPhone = formatPhoneNumber(phone);
+            
+            // Disable button and show loading
+            requestWithdrawalBtn.disabled = true;
+            requestWithdrawalBtn.textContent = 'Processing...';
+            
+            // Simulate processing (in real app, this would be an API call)
+            setTimeout(() => {
+                // Get current withdrawal history
+                const withdrawalHistory = JSON.parse(localStorage.getItem('withdrawalHistory')) || [];
+                
+                // Add new withdrawal request
+                const newWithdrawal = {
+                    phone: formattedPhone,
+                    amount: currentPrize,
+                    date: getCurrentDateTime(),
+                    status: 'pending'
+                };
+                
+                withdrawalHistory.push(newWithdrawal);
+                localStorage.setItem('withdrawalHistory', JSON.stringify(withdrawalHistory));
+                
+                // Close congratulations popup
+                congratulationsPopup.style.display = 'none';
+                
+                // Show custom alert
+                showWithdrawalAlert(currentPrize, formattedPhone);
+                
+                // Reset button state
+                requestWithdrawalBtn.disabled = false;
+                requestWithdrawalBtn.textContent = 'Request Withdrawal';
+                
+                // Reload history to show the new request
+                loadWithdrawalHistory();
+            }, 1000);
+        });
+        
+        // Alert OK button - redirects to withdraw.html
+        alertOkBtn.addEventListener('click', () => {
+            redirectToWithdraw();
+        });
+        
+        // Continue button (back to wheel)
         continueBtn.addEventListener('click', () => {
-            window.location.href = 'win.html';
+            congratulationsPopup.style.display = 'none';
+            isSpinning = false;
+            spinBtn.classList.add('pulse');
+            spinBtn.style.pointerEvents = 'auto';
+        });
+        
+        // Phone number input validation
+        phoneNumberInput.addEventListener('input', () => {
+            // Remove any non-digit characters
+            phoneNumberInput.value = phoneNumberInput.value.replace(/[^0-9]/g, '');
+            
+            // Limit to 9 digits
+            if (phoneNumberInput.value.length > 9) {
+                phoneNumberInput.value = phoneNumberInput.value.slice(0, 9);
+            }
+        });
+        
+        // Allow Enter key to submit form
+        phoneNumberInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                requestWithdrawalBtn.click();
+            }
         });
         
         // Initialize the wheel segments and load history
