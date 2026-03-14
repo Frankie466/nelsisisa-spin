@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Skiza Promo - Complete Withdrawal</title>
     <style>
         * {
@@ -14,25 +14,26 @@
         
         body {
             background: linear-gradient(135deg, #0f1a4d, #2d1b69, #6a11cb);
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            padding: 15px;
+            align-items: center;
+            padding: 8px;
+            overflow: hidden;
         }
         
         .card-container {
             background: linear-gradient(145deg, #ffffff, #f5f7ff);
-            border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
             width: 100%;
-            max-width: 400px;
-            padding: 20px 18px;
+            max-width: 380px;
+            padding: 12px 12px 10px 12px;
             text-align: center;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
+            max-height: 98vh;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            margin-top: 10px;
         }
         
         .card-container::before {
@@ -41,66 +42,52 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(to right, #6a11cb, #2575fc);
         }
         
         .trophy {
-            font-size: 40px;
-            margin-bottom: 5px;
+            font-size: 30px;
+            margin-bottom: 2px;
             color: #ffd700;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .success-tick {
             color: #4CAF50;
-            font-size: 45px;
-            margin-bottom: 10px;
-            animation: fadeIn 0.8s ease-out;
+            font-size: 35px;
+            margin-bottom: 2px;
+            line-height: 1;
         }
         
         h1 {
             color: #1a237e;
-            margin-bottom: 8px;
-            font-size: 24px;
+            margin-bottom: 2px;
+            font-size: 20px;
             font-weight: 700;
             line-height: 1.2;
         }
         
         .you-won-text {
             color: #666;
-            font-size: 15px;
-            margin-bottom: 5px;
-        }
-        
-        .prize-amount {
-            font-size: 28px;
-            font-weight: bold;
-            color: #1a237e;
-            margin: 12px 0;
-            padding: 15px;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            border-radius: 12px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: pulse 2s infinite;
+            font-size: 13px;
+            margin-bottom: 2px;
         }
         
         .withdrawal-info {
             background: #f0f4ff;
-            padding: 12px;
-            border-radius: 10px;
-            margin: 12px 0;
+            padding: 8px;
+            border-radius: 8px;
+            margin: 6px 0;
             border-left: 3px solid #6a11cb;
             text-align: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         }
         
         .info-text {
             color: #333;
-            line-height: 1.4;
-            font-size: 14px;
+            line-height: 1.3;
+            font-size: 13px;
         }
         
         .highlight {
@@ -108,80 +95,110 @@
             font-weight: bold;
         }
         
-        .subscription-notice {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            border-radius: 10px;
-            padding: 12px;
-            margin: 12px 0;
-            text-align: center;
-            font-size: 13px;
+        .instruction-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin: 6px 0;
+            text-align: left;
+            color: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
         
-        .notice-title {
-            color: #856404;
+        .instruction-title {
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            text-align: center;
+            color: #ffd700;
+            text-transform: uppercase;
+        }
+        
+        .instruction-step {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 6px;
+            align-items: flex-start;
+        }
+        
+        .instruction-step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            background: #ffd700;
+            color: #333;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 14px;
+            font-weight: bold;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        
+        .step-text {
+            font-size: 12px;
+            line-height: 1.3;
+            color: white;
+            flex: 1;
         }
         
         .ussd-section {
-            margin: 12px 0;
+            margin: 6px 0;
             background: #0e9b23;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
         }
         
         .ussd-title {
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
         
         .ussd-code-container {
             position: relative;
-            margin: 10px 0;
+            margin: 5px 0;
         }
         
         .ussd-code {
             background: linear-gradient(135deg, #1a2a6c, #b21f1f);
             color: white;
-            padding: 16px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             font-family: 'Courier New', monospace;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             word-break: break-all;
-            border: 2px solid #ffd700;
+            border: 1px solid #ffd700;
         }
         
         .copy-btn {
             position: absolute;
             top: 50%;
-            right: 10px;
+            right: 8px;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
+            padding: 4px 8px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 10px;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
         }
         
         .copy-btn:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) scale(1.05);
         }
         
         .copy-btn.copied {
@@ -191,9 +208,8 @@
         
         .action-buttons {
             display: flex;
-            gap: 12px;
-            margin-top: 20px;
-            margin-bottom: 5px;
+            gap: 6px;
+            margin: 6px 0;
         }
         
         .btn {
@@ -201,63 +217,78 @@
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
             border: none;
-            padding: 14px 10px;
-            border-radius: 10px;
-            font-size: 14px;
+            padding: 10px 5px;
+            border-radius: 8px;
+            font-size: 12px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            min-height: 45px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+            gap: 4px;
+            min-height: 38px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
         }
         
         .btn:active {
-            transform: translateY(0);
+            transform: scale(0.98);
         }
         
         .btn-dial {
             background: linear-gradient(to right, #4CAF50, #2E7D32);
         }
         
-        .btn-dial:hover {
-            background: linear-gradient(to right, #45a049, #1B5E20);
+        .btn-whatsapp {
+            background: linear-gradient(to right, #25D366, #128C7E);
         }
         
-        .btn-close {
+        .btn-withdraw {
             background: linear-gradient(to right, #f44336, #c62828);
         }
         
-        .btn-close:hover {
-            background: linear-gradient(to right, #e53935, #b71c1c);
+        .btn-withdraw:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        .btn-close {
+            background: linear-gradient(to right, #6c757d, #495057);
+        }
+        
+        .whatsapp-icon {
+            font-size: 14px;
+        }
+        
+        .warning-message {
+            background: #ff9800;
+            color: white;
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 11px;
+            margin: 5px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        .step-completed {
+            background: #4CAF50;
+            color: white;
+            padding: 1px 5px;
+            border-radius: 10px;
+            font-size: 9px;
+            margin-left: 4px;
+            display: inline-block;
         }
         
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: 0.9; }
         }
         
         @keyframes shine {
             0% { background-position: -80px; }
             100% { background-position: 150px; }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease-out;
         }
         
         .shine-effect {
@@ -271,166 +302,105 @@
             animation: shine 2.5s infinite;
         }
         
-        /* Mobile-specific optimizations */
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-                align-items: flex-start;
-            }
-            
-            .card-container {
-                padding: 18px 15px;
-                margin-top: 5px;
-            }
-            
-            h1 {
-                font-size: 22px;
-                margin-bottom: 6px;
-            }
-            
-            .you-won-text {
-                font-size: 14px;
-            }
-            
-            .prize-amount {
-                font-size: 24px;
-                padding: 12px;
-                margin: 10px 0;
-            }
-            
-            .withdrawal-info {
-                padding: 10px;
-                margin: 10px 0;
-                font-size: 13px;
-            }
-            
-            .subscription-notice {
-                padding: 10px;
-                margin: 10px 0;
-                font-size: 12px;
-            }
-            
-            .ussd-section {
-                padding: 12px;
-                margin: 10px 0;
-            }
-            
-            .ussd-code {
-                font-size: 18px;
-                padding: 14px;
-            }
-            
-            .copy-btn {
-                padding: 5px 10px;
-                font-size: 10px;
-                right: 8px;
-            }
-            
-            .action-buttons {
-                gap: 10px;
-                margin-top: 15px;
-            }
-            
-            .btn {
-                padding: 12px 8px;
-                font-size: 13px;
-                min-height: 42px;
-            }
-            
-            .trophy {
-                font-size: 35px;
-            }
-            
-            .success-tick {
-                font-size: 40px;
-            }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .card-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .card-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         
         /* Very small screens */
-        @media (max-height: 700px) and (max-width: 480px) {
+        @media (max-height: 600px) {
+            body {
+                padding: 4px;
+            }
+            
             .card-container {
-                padding: 15px 12px;
-            }
-            
-            h1 {
-                font-size: 20px;
-            }
-            
-            .prize-amount {
-                font-size: 22px;
-                padding: 10px;
-                margin: 8px 0;
-            }
-            
-            .info-text {
-                font-size: 13px;
-            }
-            
-            .ussd-code {
-                font-size: 16px;
-                padding: 12px;
-            }
-            
-            .btn {
-                padding: 10px 8px;
-                font-size: 12px;
-                min-height: 40px;
+                padding: 8px 8px 6px 8px;
             }
             
             .trophy {
-                font-size: 30px;
+                font-size: 24px;
             }
             
             .success-tick {
-                font-size: 35px;
-            }
-            
-            .subscription-notice,
-            .withdrawal-info,
-            .ussd-section {
-                padding: 8px;
-                margin: 8px 0;
-            }
-        }
-        
-        /* Ensure everything fits on one screen */
-        @media (max-height: 600px) {
-            .card-container {
-                padding: 12px 10px;
+                font-size: 28px;
             }
             
             h1 {
                 font-size: 18px;
+            }
+            
+            .you-won-text {
+                font-size: 11px;
+            }
+            
+            .withdrawal-info {
+                padding: 5px;
+                margin: 4px 0;
+            }
+            
+            .info-text {
+                font-size: 11px;
+            }
+            
+            .instruction-box {
+                padding: 5px 8px;
+                margin: 4px 0;
+            }
+            
+            .instruction-title {
+                font-size: 12px;
                 margin-bottom: 4px;
             }
             
-            .prize-amount {
-                font-size: 20px;
-                padding: 8px;
-                margin: 6px 0;
+            .instruction-step {
+                margin-bottom: 4px;
             }
             
-            .trophy {
-                font-size: 28px;
-                margin-bottom: 3px;
+            .step-number {
+                width: 18px;
+                height: 18px;
+                font-size: 10px;
             }
             
-            .success-tick {
-                font-size: 32px;
-                margin-bottom: 5px;
+            .step-text {
+                font-size: 10px;
             }
             
-            .subscription-notice,
-            .withdrawal-info,
             .ussd-section {
-                padding: 6px;
-                margin: 6px 0;
+                padding: 5px;
+                margin: 4px 0;
+            }
+            
+            .ussd-title {
+                font-size: 12px;
+                margin-bottom: 4px;
+            }
+            
+            .ussd-code {
+                padding: 8px;
+                font-size: 16px;
+            }
+            
+            .copy-btn {
+                padding: 3px 6px;
+                font-size: 9px;
             }
             
             .btn {
-                padding: 8px 6px;
-                font-size: 11px;
-                min-height: 38px;
+                padding: 6px 4px;
+                font-size: 10px;
+                min-height: 32px;
+            }
+            
+            .action-buttons {
+                margin: 4px 0;
+                gap: 4px;
             }
         }
     </style>
@@ -440,26 +410,46 @@
         <div class="trophy">🏆</div>
         <div class="success-tick">✅</div>
         <h1>Congratulations!</h1>
-        <div class="you-won-text">You've won</div>
-        
-        <div class="prize-amount" id="prizeAmount">Ksh. 0</div>
+        <div class="you-won-text">You've qualified for withdrawal</div>
         
         <div class="withdrawal-info">
             <p class="info-text">Your withdrawal request for <span class="highlight" id="withdrawalAmount">Ksh. 0</span> has been received.</p>
         </div>
         
-        <div class="subscription-notice">
-            <div class="notice-title">📢 FOLLOW INSTRUCTION TO WITHDRAW</div>
-            <p class="info-text">1. Dial *811*56# </p>
-            <p class="info-text">2.  ACCEPT THE SKIZA TUNE  TO WITHDRAW TO MPESA</p>
+        <div class="instruction-box">
+            <div class="instruction-title">📋 COMPLETE THESE STEPS</div>
+            
+            <div class="instruction-step" id="step1">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    Dial <strong>*811*56#</strong> and accept Skiza tune
+                    <span class="step-completed" id="step1Complete" style="display: none;">✓ Done</span>
+                </div>
+            </div>
+            
+            <div class="instruction-step" id="step2">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    Exit back, click WhatsApp icon & share to 22 friends
+                    <span class="step-completed" id="step2Complete" style="display: none;">✓ Done</span>
+                </div>
+            </div>
+            
+            <div class="instruction-step" id="step3">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                    Withdraw to M-Pesa
+                    <span class="step-completed" id="step3Complete" style="display: none;">✓ Done</span>
+                </div>
+            </div>
         </div>
         
         <div class="ussd-section">
-            <div class="ussd-title">Dial this USSD Code:</div>
+            <div class="ussd-title">Step 1: Dial this code</div>
             
             <div class="ussd-code-container">
                 <div class="ussd-code shine-effect" id="ussdCode">*811*56#</div>
-                <button class="copy-btn" id="copyBtn" title="Copy USSD Code">
+                <button class="copy-btn" id="copyBtn" title="Copy Code">
                     📋 Copy
                 </button>
             </div>
@@ -469,6 +459,19 @@
             <button id="dialBtn" class="btn btn-dial">
                 📞 Dial Now
             </button>
+            <button id="whatsappBtn" class="btn btn-whatsapp">
+                <span class="whatsapp-icon">📱</span> Share
+            </button>
+        </div>
+        
+        <div class="warning-message" id="warningMessage" style="display: none;">
+            ⚠️ Please complete steps 1 and 2 first!
+        </div>
+        
+        <div class="action-buttons">
+            <button id="withdrawBtn" class="btn btn-withdraw">
+                💰 Withdraw to M-Pesa
+            </button>
             <button id="closeBtn" class="btn btn-close">
                 ✕ Close
             </button>
@@ -476,36 +479,40 @@
     </div>
 
     <script>
-        const prizeAmount = document.getElementById('prizeAmount');
         const withdrawalAmount = document.getElementById('withdrawalAmount');
         const ussdCode = document.getElementById('ussdCode');
         const copyBtn = document.getElementById('copyBtn');
         const dialBtn = document.getElementById('dialBtn');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const withdrawBtn = document.getElementById('withdrawBtn');
         const closeBtn = document.getElementById('closeBtn');
+        const warningMessage = document.getElementById('warningMessage');
+        
+        const step1Complete = document.getElementById('step1Complete');
+        const step2Complete = document.getElementById('step2Complete');
+        const step3Complete = document.getElementById('step3Complete');
+
+        // Track completed steps
+        let step1Done = false;
+        let step2Done = false;
 
         // Get the prize from localStorage
         const currentPrize = localStorage.getItem('currentPrize') || '1500';
         const formattedPrize = parseInt(currentPrize).toLocaleString();
-        prizeAmount.textContent = `Ksh. ${formattedPrize}`;
         withdrawalAmount.textContent = `Ksh. ${formattedPrize}`;
 
-        // Copy USSD code functionality
+        // Copy USSD code
         copyBtn.addEventListener('click', async () => {
             try {
                 await navigator.clipboard.writeText('*811*56#');
                 copyBtn.textContent = '✅ Copied!';
                 copyBtn.classList.add('copied');
                 
-                // Visual feedback
-                copyBtn.style.transform = 'translateY(-50%) scale(1.1)';
-                
                 setTimeout(() => {
                     copyBtn.textContent = '📋 Copy';
                     copyBtn.classList.remove('copied');
-                    copyBtn.style.transform = 'translateY(-50%)';
                 }, 2000);
             } catch (err) {
-                // Fallback for older browsers
                 const textArea = document.createElement('textarea');
                 textArea.value = '*811*56#';
                 document.body.appendChild(textArea);
@@ -523,54 +530,35 @@
             }
         });
 
-        // SIMPLE and RELIABLE Dial button functionality
+        // Dial button - marks step 1 as complete
         dialBtn.addEventListener('click', () => {
-            // Visual feedback
-            dialBtn.innerHTML = '📞 Opening dialer...';
+            dialBtn.innerHTML = '📞 Opening...';
             dialBtn.disabled = true;
             
-            // Create a temporary anchor element
+            // Mark step 1 as complete
+            step1Done = true;
+            step1Complete.style.display = 'inline-block';
+            
             const link = document.createElement('a');
             
-            // Try different approaches for different devices
             if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                // For iOS - simpler approach
                 link.href = 'tel:*811*56';
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-                
             } else if (/Android/i.test(navigator.userAgent)) {
-                // For Android - multiple attempts
                 try {
-                    // First try with encoded #
                     link.href = 'tel:*811*56%23';
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
-                    
-                    // If that doesn't work, try without #
-                    setTimeout(() => {
-                        try {
-                            link.href = 'tel:*811*56';
-                            document.body.appendChild(link);
-                            link.click();
-                            document.body.removeChild(link);
-                        } catch (e2) {
-                            showManualInstructions();
-                        }
-                    }, 500);
-                    
-                } catch (e1) {
-                    showManualInstructions();
+                } catch (e) {
+                    alert('Please manually dial *811*56# on your phone');
                 }
-                
             } else {
-                // For other devices or desktop
-                showManualInstructions();
+                alert('Please manually dial *811*56# on your phone');
             }
             
-            // Reset button after delay
             setTimeout(() => {
                 dialBtn.innerHTML = '✅ Dialed!';
                 setTimeout(() => {
@@ -580,74 +568,79 @@
             }, 1000);
         });
 
-        // Show manual instructions
-        function showManualInstructions() {
-            alert(`To complete your withdrawal:\n\n1. Manually dial *811*56# on your phone\n2. Follow the subscription instructions\n3. Your prize will be processed within 24 hours\n\nThank you for using Skiza Promo!`);
-        }
+        // WhatsApp button - NOW ALLOWS SHARING EVEN WITHOUT DIALING FIRST
+        whatsappBtn.addEventListener('click', () => {
+            whatsappBtn.innerHTML = '📱 Opening...';
+            whatsappBtn.disabled = true;
+            
+            // Mark step 2 as complete (even if step 1 not done)
+            step2Done = true;
+            step2Complete.style.display = 'inline-block';
+            
+            // Prepare WhatsApp share message
+            const shareMessage = `I just won Ksh. ${formattedPrize} on Skiza Promo! Try your luck too! 🎯💰\n\nDial *811*56# and accept Skiza tune to win big!`;
+            const encodedMessage = encodeURIComponent(shareMessage);
+            const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+            
+            const link = document.createElement('a');
+            link.href = whatsappUrl;
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            setTimeout(() => {
+                alert(`📱 Share with 22 friends to complete step 2!\n\nShare this link or message to 22 WhatsApp contacts.`);
+            }, 1000);
+            
+            setTimeout(() => {
+                whatsappBtn.innerHTML = '✅ Shared!';
+                setTimeout(() => {
+                    whatsappBtn.innerHTML = '<span class="whatsapp-icon">📱</span> Share';
+                    whatsappBtn.disabled = false;
+                }, 1500);
+            }, 1000);
+        });
 
-        // Close button functionality
+        // Withdraw button - now requires both steps
+        withdrawBtn.addEventListener('click', () => {
+            if (!step1Done || !step2Done) {
+                warningMessage.style.display = 'block';
+                warningMessage.textContent = '⚠️ Please complete steps 1 and 2 first!';
+                setTimeout(() => {
+                    warningMessage.style.display = 'none';
+                }, 2000);
+                return;
+            }
+            
+            step3Complete.style.display = 'inline-block';
+            withdrawBtn.innerHTML = '💰 Processing...';
+            withdrawBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert(`✅ Ksh. ${formattedPrize} sent to your M-Pesa!`);
+                withdrawBtn.innerHTML = '✅ Withdrawn!';
+                localStorage.removeItem('currentPrize');
+                
+                setTimeout(() => {
+                    window.location.href = 'wheel.html';
+                }, 1500);
+            }, 1000);
+        });
+
+        // Close button
         closeBtn.addEventListener('click', () => {
             closeBtn.innerHTML = '🎯 Returning...';
             closeBtn.disabled = true;
             
             setTimeout(() => {
-                window.location.href = 'wheel.html'; // Change this to your main page
-            }, 800);
+                window.location.href = 'wheel.html';
+            }, 500);
         });
 
-        // Add interactive hover effects
-        const codeElement = document.querySelector('.ussd-code');
-        codeElement.addEventListener('mouseenter', () => {
-            codeElement.style.transform = 'scale(1.02)';
-            codeElement.style.transition = 'transform 0.3s ease';
-        });
-        
-        codeElement.addEventListener('mouseleave', () => {
-            codeElement.style.transform = 'scale(1)';
-        });
-        
-        // Add click effect to buttons
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(button => {
-            button.addEventListener('mousedown', () => {
-                button.style.transform = 'translateY(0)';
-            });
-            
-            button.addEventListener('mouseup', () => {
-                if (!button.disabled) {
-                    button.style.transform = 'translateY(-2px)';
-                }
-            });
-            
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = 'translateY(0)';
-            });
-        });
-        
-        // Auto-scroll to top
+        // Auto-scroll to top and prevent any overflow
         window.scrollTo(0, 0);
-        
-        // Check if content fits and adjust if needed
-        setTimeout(() => {
-            const card = document.querySelector('.card-container');
-            const cardHeight = card.scrollHeight;
-            const viewportHeight = window.innerHeight;
-            
-            if (cardHeight > viewportHeight) {
-                // Reduce padding more if content doesn't fit
-                card.style.padding = '12px 10px';
-                card.style.fontSize = '0.9em';
-            }
-        }, 100);
-        
-        // Prevent context menu on long press
-        document.addEventListener('contextmenu', (e) => {
-            if (e.target.tagName === 'BUTTON' || e.target.classList.contains('ussd-code')) {
-                e.preventDefault();
-            }
-        });
+        document.body.style.overflow = 'hidden';
     </script>
 </body>
 </html>
-
-
